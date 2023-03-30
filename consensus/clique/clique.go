@@ -67,6 +67,10 @@ var (
 
 	diffInTurn = big.NewInt(2) // Block difficulty for in-turn signatures
 	diffNoTurn = big.NewInt(1) // Block difficulty for out-of-turn signatures
+
+	FrontierBlockReward       = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
+	ByzantiumBlockReward      = big.NewInt(5e+18) // Block reward in wei for successfully mining a block upward from Byzantium
+	ConstantinopleBlockReward = big.NewInt(5e+18) // Block reward in wei for successfully mining a block upward from Constantinople
 )
 
 // Various error messages to mark blocks invalid. These should be private to
@@ -565,9 +569,22 @@ func (c *Clique) Prepare(chain consensus.ChainHeaderReader, header *types.Header
 // Finalize implements consensus.Engine, ensuring no uncles are set, nor block
 // rewards given.
 func (c *Clique) Finalize(chain consensus.ChainHeaderReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, uncles []*types.Header) {
+	number := header.Number.Uint64()
+	if number != 0 {
+		rewardCollector := c.config.RewardCollector
+		accumulateRewards(chain.Config(), state, header, uncles, rewardCollector)
+	}
+
 	// No block rewards in PoA, so the state remains as is and uncles are dropped
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 	header.UncleHash = types.CalcUncleHash(nil)
+}
+
+func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header, signer common.Address) {
+	// Select the correct block reward based on chain progression
+	blockReward := FrontierBlockReward
+	reward := new(big.Int).Set(blockReward)
+	state.AddBalance(signer, reward)
 }
 
 // FinalizeAndAssemble implements consensus.Engine, ensuring no uncles are set,
