@@ -25,5 +25,5 @@ jobs:
               fallback: latest                   
           - name: Build the Docker Image
             run: |
-                  docker build . --tag ghcr.io/CyberMiles/travis-x:${{ steps.get-latest-tag.outputs.tag }}
-                  docker push ghcr.io/CyberMiles/travis-x:${{ steps.get-latest-tag.outputs.tag }}
+                  docker build . --tag ghcr.io/cybermiles/travis-x:${{ steps.get-latest-tag.outputs.tag }}
+                  docker push ghcr.io/cybermiles/travis-x:${{ steps.get-latest-tag.outputs.tag }}
