@@ -7,7 +7,7 @@ on:
         tags:
             - 'v*'      
 jobs:
-    update_sdk:
+    build:
         runs-on: ubuntu-latest
         steps:
           - name: Check out the repo
