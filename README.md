@@ -42,6 +42,9 @@ One of the quickest ways to get CyberMiles up and running on your machine is by 
     Initialization may require more than 16GB of memory. If your machine has less than 16GB of memory, it is recommended to add a 16GB memory swap before initializing to prevent initialization failure due to insufficient memory. 
     
     During initialization, you can monitor the progress through Docker logs. Initialization is typically completed in 5-10 minutes (depending on machine configuration) when you see the message "Successfully wrote genesis state" in the logs.
+    ```
+    sudo docker run -v /home/ubuntu/cmt:/cmt -d ghcr.io/cybermiles/travis-x:v2.0.0 init --datadir /cmt/data/ /cmt/genesis.json
+    ```
 
 4. Start a full node
     
