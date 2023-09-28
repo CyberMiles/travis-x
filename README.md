@@ -127,9 +127,6 @@ Please make sure your contributions adhere to our coding guidelines:
 - Code must be documented adhering to the official Go **[commentary](https://golang.org/doc/effective_go.html#commentary)** guidelines.
 - Pull requests need to be based on and opened against the **`master`** branch.
 - Commit messages should be prefixed with the package(s) they modify.
-    - E.g., "eth, rpc: make trace configs optional"
-
-Please refer to the **[Developers' Guide](https://geth.ethereum.org/docs/developers/devguide)** for more details on configuring your environment, managing project dependencies, and testing procedures.
 
 ## **[License](https://github.com/CyberMiles/travis-x#license)**
 
