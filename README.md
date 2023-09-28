@@ -68,7 +68,7 @@ One of the quickest ways to get CyberMiles up and running on your machine is by 
     ```
 
 # **About CyberMiles Validators**
-![CMT Stake Website](https://raw.github.com/CyberMiles/travis-x/docs/image/stake.png)
+![CMT Stake Website](docs/image/stake.png)
 Validators stake CMTs and set up nodes that participate in the consensus to earn awards. The award to each validator is proportional to the total stake in its node.
 
 A CMT holder can declare his candidacy to become a validator. He will need to run a CyberMiles 2.0 node.
